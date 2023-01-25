@@ -14,7 +14,7 @@ function validateFirstName(req, res, next) {
   }
   next({
     status: 400,
-    message: 'first_name.'
+    message: 'first_name'
   })
 };
 
@@ -26,7 +26,7 @@ function validateLastName(req, res, next) {
   }
   next({
     status: 400,
-    message: 'last_name.'
+    message: 'last_name'
   })
 };
 
@@ -84,13 +84,19 @@ function validatePeople(req, res, next) {
 
 async function newReservation(req, res) {
   const reservationData = await reservationsService.createReservation(req.body.data);
-  res.status(201).json({ data: reservationData });
+  console.log(reservationData);
+  res.status(201).json({ data: reservationData});
 };
 
 async function listReservations(req, res) {
   const { date } = req.query;
-  const data = await reservationsService.listReservations(date);
-  res.status(200).json({data: data});
+  if (date) {
+    const responseData = await reservationsService.listReservations(date);
+    res.status(200).json({ data: responseData });
+  } else {
+    const responseData = await reservationsService.listReservations();
+    res.status(200).json({ data: responseData });
+  }
 }
 
 module.exports = {
