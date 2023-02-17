@@ -20,19 +20,23 @@ function listReservations(date) {
     }
 }
 
-// function listReservations(date) {
-//     if (date) {
-//       return knex("reservations")
-//         .select("*")
-//         .where({ reservation_date: date })
-//         .whereNot({ status: "finished" })
-//         .orderBy("reservation_time");
-//     } else {
-//       return knex("reservations").select("*").whereNot({ status: "finished" });
-//     }
-//   }
+function listResById(id) {
+    return knex("reservations")
+        .select("*")
+        .where({ reservation_id : id})
+        .first();
+}
+
+function updateStatus(id, newStatus) {
+    return knex("reservations")
+        .select("*")
+        .where({ reservation_id: id})
+        .update({ status : newStatus })
+}
 
 module.exports = {
     createReservation,
     listReservations,
+    listResById,
+    updateStatus,
 }

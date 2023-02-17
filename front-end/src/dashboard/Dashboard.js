@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useHistory,  } from "react-router";
+import useQuery from "../utils/useQuery";
 import { listReservations } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
+import { next, today, previous } from "../utils/date-time";
+import ReservationsList from "../reservations/ReservationsList";
+import TablesList from "../tables/TablesList";
 
 /**
  * Defines the dashboard page.
@@ -9,9 +14,14 @@ import ErrorAlert from "../layout/ErrorAlert";
  * @returns {JSX.Element}
  */
 function Dashboard({ date }) {
-  const [reservations, setReservations] = useState([]);
-  const [reservationsError, setReservationsError] = useState(null);
 
+  const history = useHistory();
+  const query = useQuery();
+  const [reservations, setReservations] = useState([]);
+  const [reservationsError, setReservationsError] = useState(null); 
+  date = query.get("date") || date;   //sets the date to the date defined in the url
+
+  //loads the dashboard with the reservation info.
   useEffect(loadDashboard, [date]);
 
   function loadDashboard() {
@@ -22,15 +32,44 @@ function Dashboard({ date }) {
       .catch(setReservationsError);
     return () => abortController.abort();
   }
+  
+
+  //console.log("before reservations list", reservations);
 
   return (
     <main>
+      <div>
+        <ErrorAlert error={reservationsError} />
+      </div>
       <h1>Dashboard</h1>
       <div className="d-md-flex mb-3">
-        <h4 className="mb-0">Reservations for date</h4>
+        <h4 className="mb-0">Reservations for {date}</h4>
       </div>
-      <ErrorAlert error={reservationsError} />
-      {JSON.stringify(reservations)}
+      <div>
+        <button onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>
+          Previous Day
+        </button>
+        <button onClick={() => history.push(`/dashboard/?date=${today()}`)}>
+          Today
+        </button>
+        <button onClick={() => history.push(`/dashboard/?date=${next(date)}`)}>
+          Next Day
+        </button>
+      </div>
+      <div>
+        <h4>Reservations</h4>
+        <p>
+        <ReservationsList reservations={reservations}/>
+        </p>
+      </div>
+      <div>
+        <h4>
+          Tables
+        </h4>
+        <TablesList />
+      </div>
+      {/* <ErrorAlert error={reservationsError} /> */}
+      {/* {JSON.stringify(reservations)} */}
     </main>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import ErrorAlert from "../layout/ErrorAlert";
 
 const axios = require("axios");
@@ -18,15 +18,24 @@ function CreateReservation() {
         people: 0,
     };
     //initialized the data to the initialFormState
-    const[data, setData]= useState({...initialFormState});
+    const[data, setData]= useState(initialFormState);
 
     //updates the data after the submit button is selected
-    const handleDataChange = ({ target }) => {
+    const handleDataChange = (event) => {
+        event.preventDefault();
+        if (event.target.name !== "people"){
         setData({
             ...data,
-            [target.name]: target.value,
+            [event.target.name]: event.target.value,
         })
-    };
+    }
+        else {
+            setData({
+                ...data,
+                [event.target.name]: parseInt(event.target.value),
+        })
+    }
+};
 
     //updates the values for the reservation in the database, then goes to the dashboard showing the new reservation
     const handleSubmit = (event) => {
@@ -39,9 +48,9 @@ function CreateReservation() {
                 signal: reservationAbort.signal,
             })
             .then((response) => {
-                console.log(response)
+                //console.log(response)
                 if (response.status - 200 < 100){
-                history.push(`/dashboard/${data.reservation_date}`);
+                history.push(`/dashboard/?date=${data.reservation_date}`);
                 }
             })
             .catch(error => {
@@ -131,5 +140,6 @@ function CreateReservation() {
         </div>
     )
 }
+
 
 export default CreateReservation;

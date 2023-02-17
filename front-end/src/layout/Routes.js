@@ -1,9 +1,10 @@
 import React from "react";
-
 import { Redirect, Route, Switch } from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
 import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
+import NewTable from "../tables/NewTable";
+import SeatReservation from "../reservations/SeatReservation";
 
 import CreateReservation from "../reservations/NewReservation";
 
@@ -15,6 +16,9 @@ import CreateReservation from "../reservations/NewReservation";
  * @returns {JSX.Element}
  */
 function Routes() {
+
+  
+
   return (
     <Switch>
       <Route exact={true} path="/">
@@ -26,8 +30,14 @@ function Routes() {
       <Route exact path="/reservations/new">
         <CreateReservation />
       </Route>
+      <Route path="/tables/new">
+        <NewTable />
+      </Route>
       <Route path="/dashboard">
-        <Dashboard date={today()} />
+        <Dashboard date={today()}/>
+      </Route>
+      <Route path="/reservations/:reservation_id/seat">
+        <SeatReservation />
       </Route>
       <Route>
         <NotFound />
