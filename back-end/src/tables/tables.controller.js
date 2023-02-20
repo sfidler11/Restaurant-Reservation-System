@@ -21,6 +21,7 @@ async function validateTableId(req, res, next) {
     const tableExists = await tablesService.readTable(table_id);
 
     if(tableExists.length > 0) {
+        res.locals.table = tableExists[0]; //sets a local variable to the table matching the table ID
         return next();
     }
 
@@ -112,14 +113,25 @@ async function isNotOccupied(req, res, next) {
 async function reservationExists(req, res, next) {
     const { reservation_id } = req.body.data;
     const existingReservation = await reservationsService.listResById(reservation_id);
-
     if(existingReservation) {
+        return next();
+    }
+    next({
+        status: 404,
+        message: `The reservation id ${reservation_id} does not exist`
+    })
+}
+
+async function reservationStatusCheck(req, res, next) {
+    const { reservation_id } = req.body.data;
+    const existingReservation = await reservationsService.listResById(reservation_id);
+    if(existingReservation.status !== "seated") {
         return next();
     }
 
     next({
-        status: 404,
-        message: `The reservation id ${reservation_id} does not exist`
+        status: 400,
+        message: `Reservation ${reservation_id} is already seated`
     })
 }
 
@@ -152,14 +164,16 @@ async function seatTable(req, res) {
 
 async function unseatTable(req, res) {
     const tableId = req.params.table_id;
-    const responseData = await tablesService.unseatTable(tableId)
+    const reservationId = res.locals.table.reservation_id;
+    const responseData = await tablesService.unseatTable(tableId, reservationId)
     res.status(200).json({ data: responseData})
 }
 
 //lists the tables
 module.exports = {
     list: [
-        asyncErrorBoundary(listTables)],
+        asyncErrorBoundary(listTables)
+    ],
 
     create: [
         validateData,
@@ -179,11 +193,13 @@ module.exports = {
         asyncErrorBoundary(reservationExists),
         asyncErrorBoundary(hasCapacity),
         asyncErrorBoundary(isOccupied),
+        asyncErrorBoundary(reservationStatusCheck),
         asyncErrorBoundary(seatTable)
     ],
     unseatTable: [
         validateTableId,
         asyncErrorBoundary(isNotOccupied),
         asyncErrorBoundary(unseatTable),
+        asyncErrorBoundary(listTables),
     ]
 }

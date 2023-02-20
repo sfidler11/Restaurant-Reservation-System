@@ -155,6 +155,20 @@ function validateStatus(req, res, next) {
     message: `The status of ${status} cannot be accepted, please assign 'Booked', 'Seated', or 'Finished'`
   })
 }
+
+async function checkCurrentStatus (req, res, next) {
+  const { reservation_id } = req.params;
+  const thisReservation = await reservationsService.listResById(reservation_id);
+
+  if(thisReservation.status !== "finished") {
+    return next();
+  }
+
+  next({
+    status: 400,
+    message: "A finished reservation cannot be updated"
+  })
+}
 //end validation functions
 
 //after the validations are passed, creates a new resercation
@@ -176,14 +190,15 @@ async function listReservations(req, res) {
   }
 }
 
+//returns a reservation by a specific id
 async function reservationById(req, res) {
   const id = await req.params.reservation_id;
   const reservation = await reservationsService.listResById(id);
   res.status(200).json({ data: reservation })
 }
 
+//updates the reservation status
 async function updateReservationStatus(req, res) {
-  console.log("apple");
   const { status } = req.body.data;
   const { reservation_id } = req.params;
   const resData = await reservationsService.updateStatus(reservation_id, status);
@@ -214,6 +229,7 @@ module.exports = {
   updateStatus: [
     asyncErrorBoundary(validateId),
     validateStatus,
+    asyncErrorBoundary(checkCurrentStatus),
     asyncErrorBoundary(updateReservationStatus)
   ],
 };

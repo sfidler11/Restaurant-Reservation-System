@@ -1,25 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import AllOfTheTables from "./ListTables";
 const axios = require("axios");
 const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 
 function TablesList() {
-    const tables = AllOfTheTables();
-    //console.log(tables, tablesError);
-
+    let tables = AllOfTheTables();
     const handleFinishClick = async (event) => {
         event.preventDefault();
-        let table_id = event.target.value;
-        console.log(table_id);
+        let tableId = event.target.value;
+        //setTableId(event.target.value)
+        console.log("id", tableId);
         //displays a window prompt to confirm that the user wants to finish the reservation
         const finishReservationPrompt = window.confirm("Is this table ready to seat new guests? This cannot be undone.");
         if(finishReservationPrompt) {
             await axios
-                .delete(`${BASE_URL}/tables/${table_id}/seat`)
-                .then(window.location.reload())
+                .delete(`${BASE_URL}/tables/${tableId}/seat`)
+                //.then(window.location.reload())
                 .catch(error => {
                     return error;
                 })
+                window.location.reload();
         }
     };
 

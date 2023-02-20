@@ -8,30 +8,36 @@ function ReservationsList({ reservations }) {
     //prints the reservations on the dashboard
     if(reservations.length > 0) {
         printReservations = reservations.map((reservation) => {
-            return (
-                <div>
+            if(reservation.status !== "finished"){
+                return (
                     <div>
-                        <h5>Reservation For {reservation.first_name} {reservation.last_name}</h5>
+                        <div>
+                            <h5>Reservation For {reservation.first_name} {reservation.last_name}</h5>
+                        </div>
+                        <div>
+                            Phone Number: {reservation.mobile_number}
+                        </div>
+                        <div>
+                            Party Size: {reservation.people}
+                        </div>
+                        <div>
+                            Reservation Date: {reservation.reservation_date}
+                        </div>
+                        <div>
+                            Reservation Time: {reservation.reservation_time}
+                        </div>
+                        {reservation.status}
+
+                        {(reservation.status === "booked") && (
+                        <Link 
+                        to={`/reservations/${reservation.reservation_id}/seat`}
+                        >
+                            Seat
+                        </Link>)
+                        }
                     </div>
-                    <div>
-                        Phone Number: {reservation.mobile_number}
-                    </div>
-                    <div>
-                        Party Size: {reservation.people}
-                    </div>
-                    <div>
-                        Reservation Date: {reservation.reservation_date}
-                    </div>
-                    <div>
-                        Reservation Time: {reservation.reservation_time}
-                    </div>
-                    <Link 
-                    to={`/reservations/${reservation.reservation_id}/seat`}
-                    >
-                        Seat
-                    </Link>
-                </div>
-            );
+                );
+            }
         })
     }
 

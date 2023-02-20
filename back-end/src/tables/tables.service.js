@@ -42,18 +42,21 @@ async function seatTables(reservationId, tableId) {
     }
 }
 
-async function unseatTable(tableId) {
+async function unseatTable(tableId, reservationId) {
+    // return knex("tables")
+    //     .select("*")
+    //     .where({ table_id : tableId })
+    //     .update({ reservation_id : null})
     try{
         const trx = await knex.transaction();
         return trx("tables")
             .select("*")
             .where({ table_id : tableId })
-            .update({ reservation_id : reservationId })
-            .then(() => {
+            .update({ reservation_id : null })
+            .then(function() {
                 return trx("reservations")
-                    .select("*")
-                    .where({ reservation_id : null })
-                    .update({ status: "booked" });
+                    .where({ reservation_id : reservationId })
+                    .update({ status: "finished" });
             })
             .then(trx.commit)
             .catch(trx.rollback);

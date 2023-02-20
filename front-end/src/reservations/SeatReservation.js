@@ -27,7 +27,7 @@ function SeatReservation() {
     });
     }
 
-    //loads the reservation based on the reservation ID in the paramets, to get the reservation name
+    //loads the reservation based on the reservation ID in the parameters, to get the reservation name
     useEffect(() => {
         async function loadReservation() {
             await axios
