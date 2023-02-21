@@ -5,6 +5,7 @@ import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
 import NewTable from "../tables/NewTable";
 import SeatReservation from "../reservations/SeatReservation";
+import SearchByNumber from "../reservations/SearchByNumber";
 
 import CreateReservation from "../reservations/NewReservation";
 
@@ -21,24 +22,35 @@ function Routes() {
 
   return (
     <Switch>
+
       <Route exact={true} path="/">
         <Redirect to={"/dashboard"} />
       </Route>
+
       <Route exact={true} path="/reservations">
         <Redirect to={"/dashboard"} />
       </Route>
+
       <Route exact path="/reservations/new">
         <CreateReservation />
       </Route>
+
       <Route path="/tables/new">
         <NewTable />
       </Route>
+
       <Route path="/dashboard">
         <Dashboard date={today()}/>
       </Route>
+
       <Route path="/reservations/:reservation_id/seat">
         <SeatReservation />
       </Route>
+
+      <Route path="/search">
+          <SearchByNumber />
+      </Route>
+
       <Route>
         <NotFound />
       </Route>

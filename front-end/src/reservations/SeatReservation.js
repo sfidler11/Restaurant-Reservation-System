@@ -35,6 +35,9 @@ function SeatReservation() {
                 .then((response) => {
                     setThisReservation(response.data)
                 })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
 
         loadReservation();

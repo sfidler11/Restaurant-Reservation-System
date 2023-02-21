@@ -181,12 +181,22 @@ async function newReservation(req, res) {
 //lists reservations on the dashboard
 async function listReservations(req, res) {
   const { date } = req.query;
+  const { mobile_number } = req.query;
+  console.log("number", mobile_number);
   if (date) {
     const responseData = await reservationsService.listReservations(date);
     res.status(200).json({ data: responseData });
-  } else {
+  } 
+
+  else {
+    if(mobile_number) {
+      const responseData = await reservationsService.search(mobile_number);
+      res.status(200).json({ data: responseData });
+    }
+    else {
     const responseData = await reservationsService.listReservations();
     res.status(200).json({ data: responseData });
+    }
   }
 }
 
