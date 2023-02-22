@@ -6,11 +6,10 @@ const BASE_URL = process.env.REACT_APP_API_BASE_URL + "/reservations?mobile_numb
 function SearchByNumber() {
     const [reservations, setReservations] = useState([]);
     const [phoneNumber, setPhoneNumber] = useState("");
-    //const [reservationList, setResevationList] = useState("No reservations found")
 
     //when submitted, sets the value of the phone number as submitted by the user
     const handleNumberChange = (event) => {
-        //event.preventDefault();
+        event.preventDefault();
         setPhoneNumber(event.target.value)
     }
 

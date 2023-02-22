@@ -9,7 +9,7 @@ function TablesList() {
         event.preventDefault();
         let tableId = event.target.value;
         //setTableId(event.target.value)
-        console.log("id", tableId);
+        //console.log("id", tableId);
         //displays a window prompt to confirm that the user wants to finish the reservation
         const finishReservationPrompt = window.confirm("Is this table ready to seat new guests? This cannot be undone.");
         if(finishReservationPrompt) {

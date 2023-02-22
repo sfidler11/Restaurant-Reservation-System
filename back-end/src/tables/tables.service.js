@@ -43,10 +43,6 @@ async function seatTables(reservationId, tableId) {
 }
 
 async function unseatTable(tableId, reservationId) {
-    // return knex("tables")
-    //     .select("*")
-    //     .where({ table_id : tableId })
-    //     .update({ reservation_id : null})
     try{
         const trx = await knex.transaction();
         return trx("tables")

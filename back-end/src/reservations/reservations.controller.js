@@ -146,7 +146,7 @@ async function validateId(req, res, next) {
 
 function validateStatus(req, res, next) {
   const { status } = req.body.data;
-  if (status === "seated" || status === "booked" || status === "finished") {
+  if (status === "seated" || status === "booked" || status === "finished" || status === "cancelled") {
     return next();
   }
 
@@ -182,7 +182,6 @@ async function newReservation(req, res) {
 async function listReservations(req, res) {
   const { date } = req.query;
   const { mobile_number } = req.query;
-  console.log("number", mobile_number);
   if (date) {
     const responseData = await reservationsService.listReservations(date);
     res.status(200).json({ data: responseData });
@@ -204,7 +203,7 @@ async function listReservations(req, res) {
 async function reservationById(req, res) {
   const id = await req.params.reservation_id;
   const reservation = await reservationsService.listResById(id);
-  res.status(200).json({ data: reservation })
+  res.status(200).json({ data: reservation });
 }
 
 //updates the reservation status
@@ -212,7 +211,16 @@ async function updateReservationStatus(req, res) {
   const { status } = req.body.data;
   const { reservation_id } = req.params;
   const resData = await reservationsService.updateStatus(reservation_id, status);
-  res.status(200).json({ data: status })
+  res.status(200).json({ data: status });
+}
+
+async function updateReservation(req, res) {
+  const updatedReservation = {
+    ...req.body.data,
+  }
+  const { reservation_id } = req.params;
+  const resData = await reservationsService.updateReservation(updatedReservation, reservation_id);
+  res.status(200).json({ data: resData });
 }
 
 module.exports = {
@@ -234,12 +242,25 @@ module.exports = {
   ],
   readId: [
     asyncErrorBoundary(validateId),
-    asyncErrorBoundary(reservationById),
+    asyncErrorBoundary(reservationById)
   ],
   updateStatus: [
     asyncErrorBoundary(validateId),
     validateStatus,
     asyncErrorBoundary(checkCurrentStatus),
     asyncErrorBoundary(updateReservationStatus)
+  ],
+  updateReservation: [
+    asyncErrorBoundary(validateId),
+    validateData,
+    validateFirstName, 
+    validateLastName, 
+    validatePhone, 
+    validateDate, 
+    validateTime, 
+    validatePeople, 
+    futureDateCheck,
+    closedOnTuesday,
+    asyncErrorBoundary(updateReservation)
   ],
 };
