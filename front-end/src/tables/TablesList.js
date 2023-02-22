@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import AllOfTheTables from "./ListTables";
 const axios = require("axios");
 const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
@@ -8,8 +8,6 @@ function TablesList() {
     const handleFinishClick = async (event) => {
         event.preventDefault();
         let tableId = event.target.value;
-        //setTableId(event.target.value)
-        //console.log("id", tableId);
         //displays a window prompt to confirm that the user wants to finish the reservation
         const finishReservationPrompt = window.confirm("Is this table ready to seat new guests? This cannot be undone.");
         if(finishReservationPrompt) {

@@ -53,7 +53,7 @@ function SeatReservation() {
         event.preventDefault();
         setUpdateTable(event.target.value)
     }
-    //console.log("selected table", updateTable);
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         const seatAbort = new AbortController();
