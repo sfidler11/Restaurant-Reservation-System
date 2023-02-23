@@ -33,7 +33,8 @@ function updateStatus(id, newStatus) {
         .select("*")
         .where({ reservation_id: id})
         .update({ status : newStatus })
-        .returning("*");
+        .returning("*")
+        .then((createdRecord) => createdRecord[0]);
 }
 
 function search(mobile_number) {
