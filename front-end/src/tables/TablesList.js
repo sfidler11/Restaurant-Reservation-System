@@ -46,7 +46,7 @@ function TablesList() {
                 }
             }
             return (
-                <div>
+                <div class="border">
                     <h5>{table.table_name}</h5>
                     Capacity: {table.capacity}
                     <div>{tableStatus()}</div>

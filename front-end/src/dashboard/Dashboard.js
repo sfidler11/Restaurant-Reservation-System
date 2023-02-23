@@ -41,35 +41,42 @@ function Dashboard({ date }) {
       <div>
         <ErrorAlert error={reservationsError} />
       </div>
-      <h1>Dashboard</h1>
-      <div className="d-md-flex mb-3">
-        <h4 className="mb-0">Reservations for {date}</h4>
+      <div class="container-fluid border rounded">
+        <h1>Dashboard</h1>
+        <div className="d-md-flex mb-3">
+          <h4 className="mb-0">Reservations for {date}</h4>
+        </div>
+        <div>
+          <button onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>
+            Previous Day
+          </button>
+          <button onClick={() => history.push(`/dashboard/?date=${today()}`)}>
+            Today
+          </button>
+          <button onClick={() => history.push(`/dashboard/?date=${next(date)}`)}>
+            Next Day
+          </button>
+        </div>
       </div>
-      <div>
-        <button onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>
-          Previous Day
-        </button>
-        <button onClick={() => history.push(`/dashboard/?date=${today()}`)}>
-          Today
-        </button>
-        <button onClick={() => history.push(`/dashboard/?date=${next(date)}`)}>
-          Next Day
-        </button>
+      <div class="container">
+        <div class="row">
+        <div class= "col">
+            <h4>Reservations</h4>
+            <div>
+              <ReservationsList reservations={reservations}/>
+            </div>
+        </div>
+        <div class="col">
+          <h4>
+            Tables
+          </h4>
+          <div>
+            <TablesList />
+          </div>
+        </div>
+        </div>
       </div>
-      <div>
-        <h4>Reservations</h4>
-        <p>
-        <ReservationsList reservations={reservations}/>
-        </p>
-      </div>
-      <div>
-        <h4>
-          Tables
-        </h4>
-        <TablesList />
-      </div>
-      {/* <ErrorAlert error={reservationsError} /> */}
-      {/* {JSON.stringify(reservations)} */}
+      
     </main>
   );
 }

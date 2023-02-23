@@ -13,7 +13,6 @@ function CreateOrEditReservation({ thisReservation }) {
     const history = useHistory();
     const [error, setError] = useState(null);
     let { reservation_id } = useParams();
-    //console.log("id", reservation_id);
 
     let initialFormState = {
         first_name: "",
