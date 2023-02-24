@@ -31,13 +31,15 @@ function TablesList() {
                     return (
                         <div>
                             Occupied
-                            <button 
+                            <div>
+                            <button class="btn btn-primary"
                             value={table.table_id}
                             data-table-id-finish={table.table_id}
                             onClick={handleFinishClick}
                             >
                             Finish
                             </button>
+                            </div>
                         </div>
                     );
                 }
@@ -46,10 +48,20 @@ function TablesList() {
                 }
             }
             return (
-                <div class="border">
-                    <h5>{table.table_name}</h5>
-                    Capacity: {table.capacity}
-                    <div>{tableStatus()}</div>
+                <div key={table.table_id} class="container">
+                <div class="border my-2">
+                    <div class="bg-info text-white p-1">
+                        <h5>Table: {table.table_name}</h5>
+                    </div>
+                    <div class="col text-center">
+                        <div class="row text-center">
+                            Seats {table.capacity}
+                        </div>
+                        <div class="row">
+                            {tableStatus()}
+                        </div>
+                    </div>
+                </div>
                 </div>
             )
         });

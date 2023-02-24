@@ -41,8 +41,8 @@ function Dashboard({ date }) {
       <div>
         <ErrorAlert error={reservationsError} />
       </div>
-      <div class="container-fluid border rounded">
-        <h1>Dashboard</h1>
+      <div class="container-fluid">
+        <h1 class="center-align">Dashboard</h1>
         <div className="d-md-flex mb-3">
           <h4 className="mb-0">Reservations for {date}</h4>
         </div>
