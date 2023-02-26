@@ -38,57 +38,24 @@ function SearchByNumber() {
             )
         })
     } 
-
-
-    //console.log(reservations);
-
-    //loads the list of reservations that matches the phone number
-    // useEffect(() => {
-    //     const listAbort = new AbortController();
-
-    //     async function listReservations() {
-    //         try {
-    //             if(reservations.length > 0 ) {
-    //                 return (reservations.map((reservation) => {
-    //                     <ReservationCard reservation={reservation} />
-    //                 })
-    //                 )
-    //             }
-
-    //             else {
-    //                 return (
-    //                     <div>
-    //                     No reservations found
-    //                     </div>
-    //                 )
-    //             }
-    //         }
-    //         catch (error){
-    //             console.log("reservation load error", error)
-    //         }
-    //         return () => listAbort.signal;
-    //     }
-    //     listReservations();
-    // }, [reservations])
-    //console.log("resList", reservationList)
-
-
+    
     return(
         <div>
-            <h3>Seach For A Reservation</h3>
+            <h3 class="col-12 text-center">Seach For A Reservation</h3>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div class="form-group alert alert-secondary">
                     <label htmlFor="mobile_number">Reservation Phone Number</label>
                     <input 
                     name="mobile_number"
                     id="mobile_number"
                     placeholder="Enter a customer's phone number"
+                    class="form-control"
                     onChange={handleNumberChange}
                     required
                     />
                 </div>
                 <div>
-                    <button type="submit">Find</button>
+                    <button type="submit" class="btn btn-primary">Find</button>
                 </div>
             </form>
             <div>

@@ -36,8 +36,8 @@ function EditReservation() {
     };
 
     return(
-        <div>
-            <h3>Edit Reservation For {reservationName} </h3>
+        <div class="container-fluid">
+            <h3 class="col-12 text-center">Edit Reservation For {reservationName} </h3>
             {thisReservation && 
             (<CreateOrEditReservation thisReservation={thisReservation}/>)
             }

@@ -59,29 +59,31 @@ function NewTable() {
 
     return (
         <div className="container">
-            <h3>Create A Table</h3>
+            <h3 class="col-12 text-center">Create A Table</h3>
             <div>
                 <ErrorAlert error={error} />
             </div>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div class="form-group alert alert-secondary">
                     <label htmlFor="table_name">Table Name</label>
                     <input
                     type="text"
                     name="table_name"
                     id="table_name"
+                    class="form-control"
                     placeholder="Insert Table Name"
                     onChange={handleDataChange}
                     required
                     />
                 </div>
-                <div>
+                <div class="form-group alert alert-secondary">
                     <label htmlFor="capacity">Table Capacity</label>
                     <input 
                     type="number"
                     min="1"
                     name="capacity"
                     id="capacity"
+                    class="form-control"
                     placeholder="1"
                     onChange={handleDataChange}
                     required
@@ -90,7 +92,7 @@ function NewTable() {
                 <button className="btn btn-secondary mx-1" onClick={() => history.goBack()}>
                     Cancel
                 </button>
-                <button type="submit" className="btn btn-primary mx-1">
+                <button type="submit" class="btn btn-primary mx-1">
                     Submit
                 </button>
             </form>

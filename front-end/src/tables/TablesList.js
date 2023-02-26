@@ -49,19 +49,20 @@ function TablesList() {
             }
             return (
                 <div key={table.table_id} class="container">
-                <div class="border my-2">
-                    <div class="bg-info text-white p-1">
-                        <h5>Table: {table.table_name}</h5>
-                    </div>
-                    <div class="col text-center">
-                        <div class="row text-center">
-                            Seats {table.capacity}
+                    <div class="border rounded my-3">
+                        <div class="bg-info text-white p-1">
+                            <h5>Table: {table.table_name}</h5>
                         </div>
-                        <div class="row">
-                            {tableStatus()}
+                        <div class="col">
+                            <div class="row">
+                                Seats {table.capacity}
+                            </div>
+                            <div class="row">
+                                {tableStatus()}
+                            </div>
+                            
                         </div>
                     </div>
-                </div>
                 </div>
             )
         });

@@ -75,13 +75,14 @@ function SeatReservation() {
 
     return (
         <div>
-            <h4> Seat Reservation For {reservationName}</h4>
+            <h4 class="col text-center"> Seat Reservation For {reservationName}</h4>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div class="form-group alert alert-secondary">
                     <label>Choose a table for the reservation</label>
                     <ErrorAlert error={seatError} />
                     <select 
                     name="table_id"
+                    class="form-control"
                     onChange={handleChange}
                     required
                     >
