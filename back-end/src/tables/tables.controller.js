@@ -197,7 +197,7 @@ module.exports = {
         asyncErrorBoundary(seatTable)
     ],
     unseatTable: [
-        validateTableId,
+        asyncErrorBoundary(validateTableId),
         asyncErrorBoundary(isNotOccupied),
         asyncErrorBoundary(unseatTable),
         asyncErrorBoundary(listTables),

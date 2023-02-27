@@ -5,8 +5,8 @@ import CreateOrEditReservation from "./ReservationForm";
 function CreateReservation() {
     
     return (
-        <div class="container-fluid">
-            <h3 class="col-12 text-center">Make A Reservation</h3>
+        <div className="container-fluid">
+            <h3 className="col-12 text-center">Make A Reservation</h3>
             <CreateOrEditReservation />
         </div>
     )

@@ -33,7 +33,7 @@ function TablesList() {
                         value="occupied">
                             Occupied
                             <div>
-                            <button class="btn btn-primary"
+                            <button className="btn btn-primary"
                             value={table.table_id}
                             data-table-id-finish={table.table_id}
                             onClick={handleFinishClick}
@@ -54,16 +54,16 @@ function TablesList() {
                 }
             }
             return (
-                <div key={table.table_id} class="container">
-                    <div class="border rounded my-3">
-                        <div class="bg-info text-white p-1">
+                <div key={table.table_id} className="container">
+                    <div className="border rounded my-3">
+                        <div className="bg-info text-white p-1">
                             <h5>Table: {table.table_name}</h5>
                         </div>
-                        <div class="col">
-                            <div class="row">
+                        <div className="col">
+                            <div className="row">
                                 Seats {table.capacity}
                             </div>
-                            <div class="row">
+                            <div className="row">
                                 {tableStatus()}
                             </div>
                             

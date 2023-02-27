@@ -1,11 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import ReservationCard from "./ReservationCard"; 
+import ErrorAlert from "../layout/ErrorAlert";
+
 const axios = require("axios");
 const BASE_URL = process.env.REACT_APP_API_BASE_URL + "/reservations?mobile_number=";
 
 function SearchByNumber() {
     const [reservations, setReservations] = useState([]);
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [error, setError] = useState(null);
 
     //when submitted, sets the value of the phone number as submitted by the user
     const handleNumberChange = (event) => {
@@ -25,6 +28,7 @@ function SearchByNumber() {
             })
             .catch((error) => {
                 console.log(error)
+                setError(error)
             })
     }
 
@@ -42,21 +46,24 @@ function SearchByNumber() {
     
     return(
         <div>
-            <h3 class="col-12 text-center">Seach For A Reservation</h3>
+            <div>
+                <ErrorAlert error={error} />
+            </div>
+            <h3 className="col-12 text-center">Seach For A Reservation</h3>
             <form onSubmit={handleSubmit}>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="mobile_number">Reservation Phone Number</label>
                     <input 
                     name="mobile_number"
                     id="mobile_number"
                     placeholder="Enter a customer's phone number"
-                    class="form-control"
+                    className="form-control"
                     onChange={handleNumberChange}
                     required
                     />
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary">Find</button>
+                    <button type="submit" className="btn btn-primary">Find</button>
                 </div>
             </form>
             <div>

@@ -8,7 +8,8 @@ function ReservationsList({ reservations }) {
         printReservations = reservations.map((reservation) => {
             if(reservation.status !== "cancelled") {
                 return (
-                     <ReservationCard reservation={reservation}/>
+                     <ReservationCard reservation={reservation}
+                     key={reservation.reservation_id}/>
                 );
             }
         })

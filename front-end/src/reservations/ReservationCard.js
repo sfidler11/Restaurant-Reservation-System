@@ -27,47 +27,47 @@ function ReservationCard({ reservation }) {
     };
 
     return (
-        <div key={reservation.reservation_id} class="container">
-            <div class="border rounded my-3">
-                <div class="bg-info text-white p-2">
+        <div className="container">
+            <div className="border rounded my-3">
+                <div className="bg-info text-white p-2">
                     <h5>Reservation For {reservation.first_name} {reservation.last_name}</h5>
                     <div 
-                    class="badge bg-secondary"
+                    className="badge bg-secondary"
                     data-reservation-id-status={reservation.reservation_id}
                     >
                         Status: {reservation.status}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
+                <div className="row">
+                    <div className="col">
                         <h6>Phone Number</h6>
                         <p>{reservation.mobile_number}</p>
                     </div>
-                    <div class="col">
+                    <div className="col">
                         <h6>Party Size</h6>
                         <p>{reservation.people}</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
+                <div className="row">
+                    <div className="col">
                         <h6>Reservation Date</h6>
                         <p>{formatAsDate(reservation.reservation_date)}</p>
                     </div>
-                    <div class="col">
+                    <div className="col">
                         <h6>Reservation Time</h6>
                         <p>{formatAsTime(reservation.reservation_time)}</p>
                     </div>
                 </div>
 
                 
-                <div class="row">
-                    <div class="col-6">
+                <div className="row">
+                    <div className="col-6">
                     {/* brings the user to the seat screen where the reservation can be seated to a table */}
                     {(reservation.status === "booked") && 
                     (<Link 
                     to={`/reservations/${reservation.reservation_id}/seat`}
                     >
-                        <button class="btn btn-primary mx-1">Seat</button>
+                        <button className="btn btn-primary mx-1">Seat</button>
                     </Link>)
                     }
                     
@@ -77,12 +77,12 @@ function ReservationCard({ reservation }) {
                     (<Link 
                     to={`/reservations/${reservation.reservation_id}/edit`}
                     >
-                        <button class="btn btn-secondary mx-1">Edit</button>
+                        <button className="btn btn-secondary mx-1">Edit</button>
                         </Link>)
                     }
                     
                     </div>
-                    <div class="col-6 text-right">
+                    <div className="col-6 text-right">
                         <button 
                         className="btn btn-danger mx-1"
                         data-reservation-id-cancel={reservation.reservation_id}

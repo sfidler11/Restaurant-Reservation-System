@@ -21,7 +21,7 @@ function Dashboard({ date }) {
   const [reservationsError, setReservationsError] = useState(null); 
   //sets the date to the date defined in the url
   date = query.get("date") || date;
-  
+
   //converts the date from the URL to [day] [month] [date] [year] format
   let dateConvert = new Date(`${date}T00:00:00`);
   let displayDate = dateConvert.toDateString();
@@ -43,30 +43,30 @@ function Dashboard({ date }) {
       <div>
         <ErrorAlert error={reservationsError} />
       </div>
-      <div class="container-fluid col-12 text-center">
-        <h1 class="center-align">Dashboard</h1>
+      <div className="container-fluid col-12 text-center">
+        <h1 className="center-align">Dashboard</h1>
           <h4 className="bg-white mb-2">Reservations for {displayDate}</h4>
         <div>
-          <button class="btn btn-outline-info" onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>
+          <button className="btn btn-outline-info" onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>
             Previous Day
           </button>
-          <button class="btn btn-outline-info mx-2" onClick={() => history.push(`/dashboard/?date=${today()}`)}>
+          <button className="btn btn-outline-info mx-2" onClick={() => history.push(`/dashboard/?date=${today()}`)}>
             Today
           </button>
-          <button class="btn btn-outline-info" onClick={() => history.push(`/dashboard/?date=${next(date)}`)}>
+          <button className="btn btn-outline-info" onClick={() => history.push(`/dashboard/?date=${next(date)}`)}>
             Next Day
           </button>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-        <div class= "col">
+      <div className="container">
+        <div className="row">
+        <div className= "col">
             <h4>Reservations</h4>
             <div>
               <ReservationsList reservations={reservations}/>
             </div>
         </div>
-        <div class="col">
+        <div className="col">
           <h4>
             Tables
           </h4>

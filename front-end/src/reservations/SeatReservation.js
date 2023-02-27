@@ -54,10 +54,10 @@ function SeatReservation() {
         setUpdateTable(event.target.value)
     }
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const seatAbort = new AbortController();
-            axios
+            await axios
                 .put(`${BASE_URL}/tables/${updateTable}/seat`, {
                 data: { reservation_id: reservation_id },
                 signal: seatAbort,
@@ -68,21 +68,21 @@ function SeatReservation() {
                     }
                 })
                 .catch(error => {
-                    console.log(error, error.response);
+                    //console.log(error, error.response);
                     setSeatError(error.response.data.error);
                 })
     }
 
     return (
         <div>
-            <h4 class="col text-center"> Seat Reservation For {reservationName}</h4>
+            <h4 className="col text-center"> Seat Reservation For {reservationName}</h4>
             <form onSubmit={handleSubmit}>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label>Choose a table for the reservation</label>
                     <ErrorAlert error={seatError} />
                     <select 
                     name="table_id"
-                    class="form-control"
+                    className="form-control"
                     onChange={handleChange}
                     required
                     >

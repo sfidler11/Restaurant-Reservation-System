@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { listTables } from "../utils/api";
 
@@ -14,7 +13,10 @@ function AllOfTheTables() {
         const abortController = new AbortController();
         listTables(abortController.signal)
             .then(setTables)
-            .catch(setTablesError);
+            .catch((error) => {
+                setTablesError(error)
+                console.log(tablesError);
+            });
         return () => abortController.signal;
     }
 

@@ -31,7 +31,6 @@ function NewTable() {
                 [event.target.name]: parseInt(event.target.value),
             })
         }
-        //console.log(data);
     };
 
     //when the submit button is clicked, it sends the form data to the db, sets the form data to the initialTableState, and navigates to the dashboard
@@ -59,31 +58,31 @@ function NewTable() {
 
     return (
         <div className="container">
-            <h3 class="col-12 text-center">Create A Table</h3>
+            <h3 className="col-12 text-center">Create A Table</h3>
             <div>
                 <ErrorAlert error={error} />
             </div>
             <form onSubmit={handleSubmit}>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="table_name">Table Name</label>
                     <input
                     type="text"
                     name="table_name"
                     id="table_name"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Insert Table Name"
                     onChange={handleDataChange}
                     required
                     />
                 </div>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="capacity">Table Capacity</label>
                     <input 
                     type="number"
                     min="1"
                     name="capacity"
                     id="capacity"
-                    class="form-control"
+                    className="form-control"
                     placeholder="1"
                     onChange={handleDataChange}
                     required
@@ -92,7 +91,7 @@ function NewTable() {
                 <button className="btn btn-secondary mx-1" onClick={() => history.goBack()}>
                     Cancel
                 </button>
-                <button type="submit" class="btn btn-primary mx-1">
+                <button type="submit" className="btn btn-primary mx-1">
                     Submit
                 </button>
             </form>

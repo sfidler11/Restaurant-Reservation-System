@@ -83,82 +83,82 @@ function CreateOrEditReservation({ thisReservation }) {
     }
 
     return (
-        <div class="container">
+        <div className="container">
             <div>
                 <ErrorAlert error={error} />
             </div>
             <form onSubmit={handleSubmit}>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="first_name">First Name</label>
                     <input 
                     type="text"
                     name="first_name"
                     id="first_name"
-                    class="form-control"
+                    className="form-control"
                     value={data.first_name}
                     placeholder="First Name"
                     onChange={handleDataChange}
                     required
                     />
                 </div>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="last_name">Last Name</label>
                     <input 
                     type="text"
                     name="last_name"
                     id="last_name"
-                    class="form-control"
+                    className="form-control"
                     value={data.last_name}
                     placeholder="Last Name"
                     onChange={handleDataChange}
                     required
                     />
                 </div>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="mobile_number">Mobile Number</label>
                     <input 
                     type="text"
                     name="mobile_number"
                     id="mobile_number"
-                    class="form-control"
+                    className="form-control"
                     value={data.mobile_number}
                     placeholder="555-555-5555"
                     onChange={handleDataChange}
                     required
                     />
                 </div>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="reservation_date">Reservtion Date</label>
                     <input 
                     type="date"
                     name="reservation_date"
                     id="reservation_date"
-                    class="form-control"
+                    className="form-control"
                     value={data.reservation_date}
                     onChange={handleDataChange}
                     required
                     />
                 </div>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="reservation_time">Reservtion Time</label>
                     <input 
                     type="time"
                     name="reservation_time"
                     id="reservation_time"
-                    class="form-control"
+                    className="form-control"
                     value={data.reservation_time}
                     onChange={handleDataChange}
                     required
                     />
                 </div>
-                <div class="form-group alert alert-secondary">
+                <div className="form-group alert alert-secondary">
                     <label htmlFor="people">Number of Guests</label>
                     <input 
                     type="number"
                     min="1"
                     name="people"
                     id="people"
-                    class="form-control"
+                    className="form-control"
                     value={data.people}
                     onChange={handleDataChange}
                     required
