@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { formatAsDate } from "../utils/date-time";
+import { formatAsTime } from "../utils/date-time";
 const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 const axios = require("axios");
 
@@ -46,11 +48,11 @@ function ReservationCard({ reservation }) {
                 <div class="row">
                     <div class="col">
                         <h6>Reservation Date</h6>
-                        <p>{reservation.reservation_date}</p>
+                        <p>{formatAsDate(reservation.reservation_date)}</p>
                     </div>
                     <div class="col">
                         <h6>Reservation Time</h6>
-                        <p>{reservation.reservation_time}</p>
+                        <p>{formatAsTime(reservation.reservation_time)}</p>
                     </div>
                 </div>
 

@@ -28,6 +28,7 @@ function SearchByNumber() {
             })
     }
 
+    //initializes the list to a message. if reservations are found then the list is passed into the "ResevationCard" componenet
     let reservationList = "No reservations found";
     if(reservations.length > 0) {
         reservationList = reservations.map((reservation) => {

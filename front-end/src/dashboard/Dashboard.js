@@ -19,7 +19,12 @@ function Dashboard({ date }) {
   const query = useQuery();
   const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null); 
-  date = query.get("date") || date;   //sets the date to the date defined in the url
+  //sets the date to the date defined in the url
+  date = query.get("date") || date;
+  
+  //converts the date from the URL to [day] [month] [date] [year] format
+  let dateConvert = new Date(`${date}T00:00:00`);
+  let displayDate = dateConvert.toDateString();
 
   //loads the dashboard with the reservation info.
   useEffect(loadDashboard, [date]);
@@ -33,9 +38,6 @@ function Dashboard({ date }) {
     return () => abortController.abort();
   }
   
-
-  //console.log("before reservations list", reservations);
-
   return (
     <main>
       <div>
@@ -43,7 +45,7 @@ function Dashboard({ date }) {
       </div>
       <div class="container-fluid col-12 text-center">
         <h1 class="center-align">Dashboard</h1>
-          <h4 className="bg-white mb-2">Reservations for {date}</h4>
+          <h4 className="bg-white mb-2">Reservations for {displayDate}</h4>
         <div>
           <button class="btn btn-outline-info" onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>
             Previous Day
