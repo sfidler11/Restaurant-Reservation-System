@@ -8,7 +8,7 @@ const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 function SeatReservation() {
     const { reservation_id } = useParams();
     const [updateTable, setUpdateTable] = useState(null);
-    const [thisReservation, setThisReservation] = useState();
+    const [thisReservation, setThisReservation] = useState("");
     const [seatError, setSeatError] = useState(null);
     let reservationName = "";
     const history = useHistory();

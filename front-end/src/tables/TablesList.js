@@ -29,7 +29,8 @@ function TablesList() {
                 //sets the status for the table list to either free or occupied
                 if(table.reservation_id) {
                     return (
-                        <div>
+                        <div data-table-id-status={table.table_id}
+                        value="occupied">
                             Occupied
                             <div>
                             <button class="btn btn-primary"
@@ -44,7 +45,12 @@ function TablesList() {
                     );
                 }
                 else {
-                    return "Free";
+                    return(
+                        <div data-table-id-status={table.table_id}
+                        value="free">
+                            Free
+                        </div>
+                    );
                 }
             }
             return (

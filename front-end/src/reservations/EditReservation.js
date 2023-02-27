@@ -8,7 +8,7 @@ const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 
 function EditReservation() {
-    const [thisReservation, setThisReservation] = useState();
+    const [thisReservation, setThisReservation] = useState("");
     let { reservation_id } = useParams();
     let reservationName = ""
     //loads the reservation based on the reservation ID in the parameters

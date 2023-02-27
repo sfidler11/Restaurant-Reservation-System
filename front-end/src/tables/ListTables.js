@@ -6,7 +6,7 @@ import { listTables } from "../utils/api";
 // It calls a funntions from utils.api.js 
 
 function AllOfTheTables() {
-    const [tables, setTables] = useState();
+    const [tables, setTables] = useState([]);
     const [tablesError, setTablesError] = useState(null);
     //loads the list of tables utilizing a useEffect hook
     useEffect(loadTables, []);

@@ -31,7 +31,10 @@ function ReservationCard({ reservation }) {
             <div class="border rounded my-3">
                 <div class="bg-info text-white p-2">
                     <h5>Reservation For {reservation.first_name} {reservation.last_name}</h5>
-                    <div class="badge bg-secondary">
+                    <div 
+                    class="badge bg-secondary"
+                    data-reservation-id-status={reservation.reservation_id}
+                    >
                         Status: {reservation.status}
                     </div>
                 </div>
