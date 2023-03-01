@@ -46,7 +46,12 @@ function CreateOrEditReservation({ thisReservation }) {
     //updates the values for the reservation in the database, then goes to the dashboard showing the new reservation
     const handleSubmit = (event) => {
         event.preventDefault();
-        setData({...initialFormState});
+        if(thisReservation){
+            setData({...thisReservation})
+        }
+        else {
+            setData({...initialFormState})
+        }
         const reservationAbort = new AbortController();
         if(reservation_id) {
             axios
