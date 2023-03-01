@@ -43,12 +43,15 @@ function CreateOrEditReservation({ thisReservation }) {
     }
     };
 
+
     //updates the values for the reservation in the database, then goes to the dashboard showing the new reservation
     const handleSubmit = (event) => {
         event.preventDefault();
+        //if the reservation is being edited and there is an error, keeps reservation info
         if(thisReservation){
             setData({...thisReservation})
         }
+        //sets form data to an emppty field
         else {
             setData({...initialFormState})
         }
