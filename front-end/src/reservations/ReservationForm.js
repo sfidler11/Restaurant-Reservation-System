@@ -117,7 +117,8 @@ function CreateOrEditReservation({ thisReservation }) {
                 <div className="form-group alert alert-secondary">
                     <label htmlFor="mobile_number">Mobile Number</label>
                     <input 
-                    type="text"
+                    type="number"
+                    pattern="[0-9]*"
                     name="mobile_number"
                     id="mobile_number"
                     className="form-control"
