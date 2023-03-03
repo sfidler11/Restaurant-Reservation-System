@@ -108,8 +108,10 @@ function futureDateCheck(req, res, next) {
 function closedOnTuesday(req, rest, next) {
   const { reservation_date } =  req.body.data;
   const thisReservation = new Date(reservation_date);
-  const isTuesday = thisReservation.getDay();
-  if (isTuesday !== 1) {
+  const isTuesday = thisReservation.getUTCDay();
+  console.log(isTuesday);
+  console.log(thisReservation.getDay());
+  if (isTuesday !== 2) {
     return next();
   }
 
