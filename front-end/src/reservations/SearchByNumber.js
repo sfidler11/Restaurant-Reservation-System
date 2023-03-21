@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import ReservationCard from "./ReservationCard"; 
 import ErrorAlert from "../layout/ErrorAlert";
+import formatPhoneNumber from "../utils/formatPhoneNumber";
 
 const axios = require("axios");
 const BASE_URL = process.env.REACT_APP_API_BASE_URL + "/reservations?mobile_number=";
@@ -12,8 +13,15 @@ function SearchByNumber() {
 
     //when submitted, sets the value of the phone number as submitted by the user
     const handleNumberChange = (event) => {
-        event.preventDefault();
-        setPhoneNumber(event.target.value)
+        //event.preventDefault();
+        const formattedNumber = formatPhoneNumber(event.target.value);
+        setPhoneNumber(formattedNumber);
+        console.log(phoneNumber);
+        // const formattedNumber = formatPhoneNumber(event.target.value);
+        // setData({
+        //     ...data,
+        //     mobile_number: formattedNumber,
+        // })
     }
 
     const handleSubmit = (event) => {
@@ -37,7 +45,7 @@ function SearchByNumber() {
     if(reservations.length > 0) {
         reservationList = reservations.map((reservation) => {
             return(
-                <div>
+                <div key={reservation.reservation_id}>
                 <ReservationCard reservation={reservation}/>
             </div>
             )
@@ -56,8 +64,10 @@ function SearchByNumber() {
                     <input 
                     name="mobile_number"
                     id="mobile_number"
+                    type="text"
                     placeholder="Enter a customer's phone number"
                     className="form-control"
+                    value={phoneNumber}
                     onChange={handleNumberChange}
                     required
                     />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import ErrorAlert from "../layout/ErrorAlert";
+import formatPhoneNumber from "../utils/formatPhoneNumber";
 
 /*
 Creates the form for users to create or edit reservations
@@ -43,52 +44,41 @@ function CreateOrEditReservation({ thisReservation }) {
     }
     };
 
+    const handlePhoneNumberChange = (event) => {
+        event.preventDefault();
+        const formattedNumber = formatPhoneNumber(event.target.value);
+        setData({
+            ...data,
+            mobile_number: formattedNumber,
+        })
+    }
 
     //updates the values for the reservation in the database, then goes to the dashboard showing the new reservation
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        //if the reservation is being edited and there is an error, keeps reservation info
-        if(thisReservation){
-            setData({...thisReservation})
-        }
-        //sets form data to an emppty field
-        else {
-            setData({...initialFormState})
-        }
         const reservationAbort = new AbortController();
-        if(reservation_id) {
-            axios
-                .put(`${BASE_URL}/reservations/${reservation_id}`, {
-                    data: data,
-                    signal: reservationAbort.signal,
-                })
-                .then((response) => {
-                    if(response.status - 200 < 100){
-                        history.push(`/dashboard/?date=${data.reservation_date}`);
-                    }
-                })
-                .catch(error => {
-                    setError(error.response.data.error)
-                })
+        try {
+          if (reservation_id) {
+            //sets reservation data if it the user is editing a reservation
+            setData({...thisReservation})
+            await axios.put(`${BASE_URL}/reservations/${reservation_id}`, {
+              data: data,
+              signal: AbortController.signal,
+            });
+          } else {
+            //sets the data to the base data
+            setData({...initialFormState})
+            await axios.post(`${BASE_URL}/reservations`, {
+              data: data,
+              signal: AbortController.signal,
+            });
+          }
+          history.push(`/dashboard?date=${data.reservation_date}`);
+        } catch (error) {
+          setError(error.response.data.error);
         }
-        else {
-            axios
-                .post(`${BASE_URL}/reservations`, {
-                    data: data,
-                    signal: reservationAbort.signal,
-                })
-                .then((response) => {
-                    //console.log(response)
-                    if (response.status - 200 < 100){
-                    history.push(`/dashboard/?date=${data.reservation_date}`);
-                    }
-                })
-                .catch(error => {
-                    console.log(error, error.response);
-                    setError(error.response.data.error);
-                })
-            }
-    }
+        return () => reservationAbort.abort();
+      };
 
     return (
         <div className="container">
@@ -125,14 +115,13 @@ function CreateOrEditReservation({ thisReservation }) {
                 <div className="form-group alert alert-secondary">
                     <label htmlFor="mobile_number">Mobile Number</label>
                     <input 
-                    type="number"
-                    pattern="[0-9]*"
                     name="mobile_number"
+                    type="text"
                     id="mobile_number"
                     className="form-control"
                     value={data.mobile_number}
                     placeholder="555-555-5555"
-                    onChange={handleDataChange}
+                    onChange={handlePhoneNumberChange}
                     required
                     />
                 </div>
