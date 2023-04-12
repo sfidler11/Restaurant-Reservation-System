@@ -6,6 +6,39 @@ The Restaurant Reservation System is a full-stack reservation system for restaur
 2. Run `npm install` to install local dependencies
 3. Run `npm run start` to start the application
 
+
+## Technologies
+Javascript, React, Bootstrap 4, HTML, CSS, Express.js, PostgresSQL, Knex.js
+
+![javascript logo](/images/JavaScript.png)
+![react logo](/images/React.png)
+![bootstrap logo](/images/bootstrap.png)
+![html logo](/images/html.png)
+![css logo](/images/css.png)
+![express logo](/images/express.png)
+![postgres elephant](/images/Postgresql_elephant.svg.png)
+![knex logo](/images/knex-logo.png)
+
+## Front End
+
+## Back End
+
+### Routes 
+
+-- Below is a placeholder for formatting --
+
+| Request Type | Route | Description |
+| -- | -- | -- |
+| Get | `/movies` | Returns all movies currently in the database |
+| Get | `/movies/is_showing=true` | Returns all movies that are currently showing in theaters |
+| Get | `/movies/:movieId` | Returns a movie based on it's specific ID |
+| Get | `/movies/:movieId/reviews` | Returns all reviews for a specific movie |
+| Get | `/movies/:movieId/theaters` | Returns all theaters showing a specific movie |
+| Get | `/theaters` | Returns all theaters, including the movies shown at each theater |
+| Put | `/reviews/:reviewId` | Updates an existing review and returns the updated review with critic info |
+| Delete | `/reviews/:reviewId` | Deletes the review record based on a specific review ID |
+
+
 The deployed app can be found here: 
 Frontend - https://restauraunt-reservation-system-frontend.onrender.com/dashboard
 Backend - https://restaurant-reservation-system-backend-vgjx.onrender.com/
