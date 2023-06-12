@@ -1,5 +1,5 @@
-# Restaurant Reservation System | A Full-Stack Reservation App
-The Restaurant Reservation System is a full-stack reservation system for restaurant managers where users can create and manage restaurant reservations and available tables.
+# Periodic Tables Restaurant Reservation System | A Full-Stack Reservation App
+The Periodic Tables app is a full-stack reservation system for restaurant managers where users can create and manage restaurant reservations and available tables.
 
 ## Installation
 1. Fork and clone this repository
@@ -20,12 +20,25 @@ Javascript, React, Bootstrap 4, HTML, CSS, Express.js, PostgresSQL, Knex.js
 ![knex logo](/images/knex-logo.png)
 
 ## Front End
+The Periodic Tables app front end was created using React and Bootstrap 4.
+
+### Dashboard
+![dashboard](/images/dashboard.png)
+
+### Search
+![search empty](/images/searchEmpty.png)
+
+![search complete](/images/searchComplete.png)
+
+### New Reservation
+![new reservation](/images/makeAReservation.png)
+
+### New Table
+![new table](/images/createTable.png)
 
 ## Back End
 
 ### Routes 
-
--- Below is a placeholder for formatting --
 
 | Request Type | Route | Description |
 | -- | -- | -- |
