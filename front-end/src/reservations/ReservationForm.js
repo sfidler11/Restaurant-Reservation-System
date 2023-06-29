@@ -120,7 +120,7 @@ function CreateOrEditReservation({ thisReservation }) {
                     id="mobile_number"
                     className="form-control"
                     value={data.mobile_number}
-                    placeholder="555-555-5555"
+                    placeholder="(555) 555-5555"
                     onChange={handlePhoneNumberChange}
                     required
                     />

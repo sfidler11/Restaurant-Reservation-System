@@ -23,17 +23,48 @@ Javascript, React, Bootstrap 4, HTML, CSS, Express.js, PostgresSQL, Knex.js
 The Periodic Tables app front end was created using React and Bootstrap 4.
 
 ### Dashboard
+This is the main pafe of the app and includes the following functions:
+- The ability to change the reservations date through the `Previous Day`, `Today`, and `Next Day` buttons
+- When a reservation falls on selected date, the user can edit take actions on the reservations as described in the "Search" Section
+- A static dashboard appears on the left which allows the user to navigate between the `Dashboard`, `Search`, `New Reservation`, and `New Table` sections of the app
+
 ![dashboard](/images/dashboard.png)
 
 ### Search
+This page allows the user to find a reservation based on the customer's phone number.
+- The search bar will automatically stylize the entered phone number when a fifth and eigth digit are added to the number
+- The search bar only accepts numerical values
+- Selecting the `Find` button will locate all reservations that match the phone number added (note: the user does not need to enter a complete phone number, the search function will find all matching reservations wtih whatever numbers are added)
+- Located reservations will have the following options available:
+`Seat` - brings the user to the "Seat Reservation" screen
+`Edit` - brings the user to a new screen to edit the reservation info
+`Cancel` - Cancels the reservation after the user confirms that they wish to continue with the action
 ![search empty](/images/searchEmpty.png)
 
 ![search complete](/images/searchComplete.png)
 
+### Seat Reservation
+This page allows the user to assign a reservation to an open table. If the table cannot fit the reservation, an error message will appear.
+
+![seat](/images/seatReservation.png)
+
 ### New Reservation
+Thia page allows the user to create a new reservation, which must include the following:
+First and Last Names: Accepts all characters
+Phone Number: A ten digit, numeric number
+Reservation Date: Has to be a future date and will not accept Tuesday reservations as the restaurant is closed on Tuesdays
+Reservation Time: Anytime between the hours of 10:30 AM and 9:30 PM
+Number of Guests: Any non-zero positive integer
+
+If any of the information is invalid or missing, the user is shown an error message.
+
+When the user selects `Submit`, the reservation is saved and the user is brought back to the `Dashboard` on the date of the newly created reservation
 ![new reservation](/images/makeAReservation.png)
 
 ### New Table
+This page allows the user to create a new table, which must include the following:
+Table Name: Accepts all characters
+Table Capacity: Any non-zero positive integer
 ![new table](/images/createTable.png)
 
 ## Back End
