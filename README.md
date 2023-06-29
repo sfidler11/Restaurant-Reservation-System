@@ -39,6 +39,7 @@ This page allows the user to find a reservation based on the customer's phone nu
 `Seat` - brings the user to the "Seat Reservation" screen
 `Edit` - brings the user to a new screen to edit the reservation info
 `Cancel` - Cancels the reservation after the user confirms that they wish to continue with the action
+
 ![search empty](/images/searchEmpty.png)
 
 ![search complete](/images/searchComplete.png)
