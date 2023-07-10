@@ -74,18 +74,18 @@ Table Capacity: Any non-zero positive integer
 
 | Request Type | Route | Description |
 | -- | -- | -- |
-| Get | `/movies` | Returns all movies currently in the database |
-| Get | `/movies/is_showing=true` | Returns all movies that are currently showing in theaters |
-| Get | `/movies/:movieId` | Returns a movie based on it's specific ID |
-| Get | `/movies/:movieId/reviews` | Returns all reviews for a specific movie |
-| Get | `/movies/:movieId/theaters` | Returns all theaters showing a specific movie |
-| Get | `/theaters` | Returns all theaters, including the movies shown at each theater |
-| Put | `/reviews/:reviewId` | Updates an existing review and returns the updated review with critic info |
-| Delete | `/reviews/:reviewId` | Deletes the review record based on a specific review ID |
+| Get | `/reservations` | Returns all movies reservations in the database |
+| Get | `/reservations?date=YYYY-MM-DD` | Returns all reservations by a specific date |
+| Post | `/reservations` | Creates a new reservation that is added to the database |
+| Get | `/reservations/:reservation_id` | Returns a specific reservation |
+| Put | `/reservations/:reservation_id` | Updates the information for a specific reservation |
+| Put | `/reservations/:reservation_id/status` | Updates the status of a specific reservation |
+| Get | `/tables` | Returns a list of all tables |
+| Post | `/tables` | Creates a new table that is added to the database |
+| Put | `/tables/:table_id/seat` | Assigns a reservation to a table and updates the `seated` status |
+| Delete | `/tables/:table_id/seat` | Removes a reservation from a table |
 
 
 The deployed app can be found here: 
 Frontend - https://restauraunt-reservation-system-frontend.onrender.com/dashboard
 Backend - https://restaurant-reservation-system-backend-vgjx.onrender.com/
-
-A more robust readme file will be updated in the near future
